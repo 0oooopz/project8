@@ -25,3 +25,7 @@ Route::group(['prefix'=>'carts'], function(){
 Route::get('home', function(){
 	return view('pages.home');
 })->name('home');
+
+Route::get('/users', function(){
+	return view('users.index');
+})->name('users');
