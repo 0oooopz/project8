@@ -22,3 +22,6 @@ Route::group(['prefix'=>'carts'], function(){
     Route::get('/{id}', [CartsController::class, 'show'])->name('carts.show');
 });
 
+Route::get('home', function(){
+	return view('pages.home');
+});
