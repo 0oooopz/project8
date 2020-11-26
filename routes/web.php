@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartsController;
+use App\Http\Controllers\UsersController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,6 +28,4 @@ Route::get('home', function(){
 	return view('pages.home');
 })->name('home');
 
-Route::get('/users', function(){
-	return view('users.index');
-})->name('users');
+Route::get('/users', [UsersController::class, 'index'])->name('users');

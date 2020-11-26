@@ -26,6 +26,7 @@ class UsersTableSeeder extends Seeder
                 'last_name' => $faker->lastName,
                 'role' => $faker->randomElement(['admin','user']),
                 'gender' => $faker->randomElement(['male','female']),
+                'salary' => rand('0','3000'),
                 'email' => $faker->unique()->email,
                 'password' => Hash::make('password'),
                 'created_at' => now(),
