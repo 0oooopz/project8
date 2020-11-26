@@ -11,6 +11,8 @@
 </head>
 <body>
 
+  @include('layouts.header')
+
   @yield('content')
 
   @section('javascript')

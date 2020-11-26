@@ -24,4 +24,4 @@ Route::group(['prefix'=>'carts'], function(){
 
 Route::get('home', function(){
 	return view('pages.home');
-});
+})->name('home');
