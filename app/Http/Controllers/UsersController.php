@@ -12,4 +12,8 @@ class UsersController extends Controller {
 		$users = DB::table('users')->get();
 		return view('users.index',['users' => $users]);
 	}
+
+	public function show($id){
+
+	}
 }

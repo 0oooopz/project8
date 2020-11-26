@@ -16,16 +16,20 @@ use App\Http\Controllers\UsersController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('pages.home');
+})->name('home');
+
+Route::group(['prefix'=>'users'],function() {
+	Route::get('/', [UsersController::class, 'index'])->name('users.index');
+	Route::get('/{user}', [UsersController::class, 'show'])->name('users.show');
 });
+
+
+
 
 Route::group(['prefix'=>'carts'], function(){
     Route::get('/', [CartsController::class, 'index'])->name('carts.index');
     Route::get('/{id}', [CartsController::class, 'show'])->name('carts.show');
 });
 
-Route::get('home', function(){
-	return view('pages.home');
-})->name('home');
 
-Route::get('/users', [UsersController::class, 'index'])->name('users');

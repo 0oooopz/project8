@@ -14,6 +14,7 @@
         <th scope="col">Gender</th>
         <th scope="col">Salary</th>
         <th scope="col">Email</th>
+        <th scope="col">Action</th>
       </tr>
       </thead>
       <tbody>
@@ -27,6 +28,7 @@
             <td>{{ $user->gender }}</td>
             <td>{{ $user->salary }}</td>
             <td>{{ $user->email }}</td>
+            <td><a href="{{ route('users.show', ['user' => $user->id]) }}">More...</a></td>
           </tr>
         @endforeach
       </tbody>
