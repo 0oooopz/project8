@@ -4,19 +4,23 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Traits\Searchable;
 
 class UsersController extends Controller {
 
-	public function index() {
+	use Searchable;
 
-		$users = DB::table('users')->get();
-		return view('users.index',['users' => $users]);
+	public function index(Request $request) {
+
+		return view('users.index', [
+			'users' => $this->search(DB::table('users'), $request)->get()
+		]);
 	}
 
-	public function show(int $id){
+	public function show(int $id) {
 
 		return view('users.show', [
-			'user'=>($user = DB::table('users')->find($id))?$user : abort(404)
+			'user' => ($user = DB::table('users')->find($id)) ? $user : abort(404)
 		]);
 
 	}
