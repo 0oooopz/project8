@@ -13,7 +13,11 @@ class UsersController extends Controller {
 		return view('users.index',['users' => $users]);
 	}
 
-	public function show($id){
+	public function show(int $id){
+
+		return view('users.show', [
+			'user'=>($user = DB::table('users')->find($id))?$user : abort(404)
+		]);
 
 	}
 }

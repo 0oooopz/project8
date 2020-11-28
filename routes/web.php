@@ -21,7 +21,7 @@ Route::get('/', function () {
 
 Route::group(['prefix'=>'users'],function() {
 	Route::get('/', [UsersController::class, 'index'])->name('users.index');
-	Route::get('/{user}', [UsersController::class, 'show'])->name('users.show');
+	Route::get('/{user}', [UsersController::class, 'show'])->name('users.show')->where('user','[0-9]+');
 });
 
 

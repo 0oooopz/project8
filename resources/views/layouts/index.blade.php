@@ -7,7 +7,7 @@
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>@yield('title', 'Laravel course')</title>
-  <link rel="stylesheet" href="{{'css/app.css'}}">
+  <link rel="stylesheet" href="{{asset('css/app.css')}}">
 </head>
 <body>
 
@@ -21,7 +21,7 @@
 
 
   @section('javascript')
-    <script src="{{ ('js/app.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
   @show
 </body>
 </html>
