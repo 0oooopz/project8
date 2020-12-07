@@ -4,9 +4,9 @@
 
   <div class="row">
 
-{{--    <div class="col-12">--}}
-{{--      <a href="{{ route('products.create') }}" class="btn btn-success">Create</a>--}}
-{{--    </div>--}}
+    <div class="col-12">
+      <a href="{{ route('products.create') }}" class="btn btn-success">Create</a>
+    </div>
 
     @foreach($products as $product)
       <div class="col-6 my-2">

@@ -19,6 +19,7 @@ class ProductsTableSeeder extends Seeder
 		    DB::table('products')->insert([
 			    'sku' => $faker->numberBetween(10000, 20000),
 			    'name' => $faker->name(),
+			    'slug' => $faker->word(),
 			    'description' => $faker->sentence(6),
 			    'price_user' => $faker->randomFloat(2, 180, 200),
 			    'price_3_opt' => $faker->randomFloat(2, 160, 179),

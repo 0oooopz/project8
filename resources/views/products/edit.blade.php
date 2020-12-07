@@ -14,13 +14,18 @@
       @csrf
 
       <div class="form-group">
-        <label for="sku">Name</label>
+        <label for="name">Name</label>
         <input type="text" class="form-control" id="name" name="name" value="{{ $products->name }}">
       </div>
 
       <div class="form-group">
         <label for="sku">Sku</label>
         <input type="number" class="form-control" id="sku" name="sku"  value="{{ $products->sku }}">
+      </div>
+
+      <div class="form-group">
+        <label for="slug">Slug</label>
+        <input type="text" class="form-control" id="slug" name="slug"  value="{{ $products->slug }}">
       </div>
 
       <div class="form-group">

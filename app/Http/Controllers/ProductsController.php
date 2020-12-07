@@ -51,7 +51,7 @@ class ProductsController extends Controller {
 
     	$product->name = $request->name;
     	$product->sku = $request->sku;
-    	//$product->slug = $request->slug;
+    	$product->slug = $request->slug;
     	$product->price_user = $request->price_user;
     	$product->price_3_opt = $request->price_3_opt;
     	$product->price_8_opt = $request->price_8_opt;
@@ -70,7 +70,7 @@ class ProductsController extends Controller {
 
 	    $product->name = $request->name;
 	    $product->sku = $request->sku;
-	    //$product->slug = $request->slug;
+	    $product->slug = $request->slug;
 	    $product->price_user = $request->price_user;
 	    $product->price_3_opt = $request->price_3_opt;
 	    $product->price_8_opt = $request->price_8_opt;
