@@ -3,28 +3,44 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
 
 
 class ProductsController extends Controller {
-
-    public function index(){
-    	$sdsdsdd =Product::all();
-    	return view('products.index',['products'=>$sdsdsdd]);
+	/**
+	 * @return View Вопрос Че тут возвращать ?
+	 */
+    public function index(): View
+    {
+    	return view('products.index',['products'=>Product::all()]);
     }
 
-    public function show(int $id){
-			$wwww = 4;
+	/**
+	 * @param int $id
+	 * @return \Illuminate\Contracts\View\View
+	 */
+    public function show(int $id): \Illuminate\Contracts\View\View
+    {
     	return view('products.show',['products'=>Product::findOrFail($id)]);
     }
 
-    public function create(){
+	/**
+	 * @return \Illuminate\Contracts\View\View
+	 */
+    public function create(): \Illuminate\Contracts\View\View
+    {
     	return view('products.create');
     }
 
-    public function edit($id){
+	/**
+	 * @param $id
+	 * @return \Illuminate\Contracts\View\View
+	 */
+    public function edit($id): \Illuminate\Contracts\View\View
+    {
     	return view('products.edit', ['products'=>Product::findOrFail($id)]);
     }
 
@@ -32,58 +48,34 @@ class ProductsController extends Controller {
 	 * @param Request $request
 	 * @return string
 	 */
-    public function store(Request $request){
+    public function store(Request $request): RedirectResponse
+    {
 
     	$product = new Product();
-//
-//    	$product->create([
-//	    'name' => $request->name,
-//	    'sku' => $request->sku,
-//	    'slug' => $request->slug,
-//	    'price_user' => $request->price_user,
-//	    'price_3_opt' => $request->price_3_opt,
-//	    'price_8_opt' => $request->price_8_opt,
-//	    'price_dealer' => $request->price_dealer,
-//	    'price_vip' => $request->price_vip,
-//	    'category_id' => $request->category_id,
-//	    'stock' => $request->stock,
-//]);
 
-    	$product->name = $request->name;
-    	$product->sku = $request->sku;
-    	$product->slug = $request->slug;
-    	$product->price_user = $request->price_user;
-    	$product->price_3_opt = $request->price_3_opt;
-    	$product->price_8_opt = $request->price_8_opt;
-    	$product->price_dealer = $request->price_dealer;
-    	$product->price_vip = $request->price_vip;
-    	$product->category_id = $request->category_id;
-    	$product->stock = $request->stock;
-
-    	$product->save();
+    	$product->create(array_merge($request->all(),['slug' => Str::slug($request->name)]));
 	    return redirect()->route('products.index');
     }
 
-    public function update($id, Request $request){
-    	$product = new Product();
-	    Product::findOrFail($id)->delete();
+	/**
+	 * @param $id
+	 * @param Request $request
+	 * @return RedirectResponse
+	 */
+    public function update($id, Request $request): RedirectResponse
+    {
+    	$product = Product::findOrFail($id);
 
-	    $product->name = $request->name;
-	    $product->sku = $request->sku;
-	    $product->slug = $request->slug;
-	    $product->price_user = $request->price_user;
-	    $product->price_3_opt = $request->price_3_opt;
-	    $product->price_8_opt = $request->price_8_opt;
-	    $product->price_dealer = $request->price_dealer;
-	    $product->price_vip = $request->price_vip;
-	    $product->category_id = $request->category_id;
-	    $product->stock = $request->stock;
-
-	    $product->save();
+	    $product->update(array_merge($request->all(),['slug' => Str::slug($request->name)]));
 	    return redirect()->route('products.index');
     }
 
-    public function destroy($id){
+	/**
+	 * @param $id
+	 * @return RedirectResponse
+	 */
+    public function destroy($id): RedirectResponse
+    {
 			Product::findOrFail($id)->delete();
 			return redirect()->route('products.index');
     }
