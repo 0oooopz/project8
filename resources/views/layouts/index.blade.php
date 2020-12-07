@@ -13,15 +13,10 @@
 
   @include('layouts.header')
 
-  <div class="container">
-    <div class="row">
-      @yield('content')
-    </div>
+  <div id="app" class="container py-2">
+    @yield('content')
   </div>
 
-
-  @section('javascript')
-    <script src="{{ asset('js/app.js') }}"></script>
-  @show
+  <script src="{{  asset('js/app.js') }}"></script>
 </body>
 </html>

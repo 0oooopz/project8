@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CartsController;
-use App\Http\Controllers\UsersController;
+use App\Http\Controllers\ProductsController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,20 +16,24 @@ use App\Http\Controllers\UsersController;
 */
 
 Route::get('/', function () {
-    return view('pages.home');
-})->name('home');
+    return view('welcome');
+})->name('welcome');
 
-Route::group(['prefix'=>'users'],function() {
-	Route::get('/', [UsersController::class, 'index'])->name('users.index');
-	Route::get('/{user}', [UsersController::class, 'show'])->name('users.show')->where('user','[0-9]+');
-});
+//
+//Route::group(['prefix' => 'products',],function(){
+//	Route::get('/',[ProductsController::class, 'index'])->name('products.index');
+//	Route::post('/store',[ProductsController::class, 'store'])->name('products.store');
+//	Route::get('/create',[ProductsController::class, 'create'])->name('products.create');
+//	Route::get('/{id}',[ProductsController::class, 'show'])->name('products.show')->where('id','\d+');
+//	Route::get('/{id}/edit',[ProductsController::class, 'edit'])->name('products.edit')->where('id','\d+');
+//	Route::post('/{id}',[ProductsController::class, 'update'])->name('products.update')->where('id','\d+');
+//	Route::delete('/{id}',[ProductsController::class, 'destroy'])->name('products.destroy')->where('id','\d+');
+//});
 
-
-
-
-Route::group(['prefix'=>'carts'], function(){
-    Route::get('/', [CartsController::class, 'index'])->name('carts.index');
-    Route::get('/{id}', [CartsController::class, 'show'])->name('carts.show');
-});
-
-
+Route::get('/products', [ProductsController::class, 'index'])->name('products.index');
+Route::post('/products/store', [ProductsController::class, 'store'])->name('products.store');
+Route::get('/products/{product}', [ProductsController::class, 'show'])->name('products.show');
+Route::get('products/{product}/edit', [ProductsController::class, 'edit'])->name('products.edit')->where('id','\d+');
+Route::delete('/products/{product}', [ProductsController::class, 'destroy'])->name('products.destroy')->where('id','\d+');
+Route::get('/products/{product}/edit', [ProductsController::class, 'edit'])->name('products.edit')->where('id','\d+');
+Route::post('/products/{product}', [ProductsController::class, 'update'])->name('products.update')->where('id','\d+');
