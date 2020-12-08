@@ -46,7 +46,7 @@ class ProductsController extends Controller {
 
 	/**
 	 * @param Request $request
-	 * @return string
+	 * @return RedirectResponse
 	 */
     public function store(Request $request): RedirectResponse
     {

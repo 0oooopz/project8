@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\CategoryController;
 
 
 /*
@@ -30,10 +31,4 @@ Route::group(['prefix' => 'products','as' => 'products'],function(){
 	Route::delete('/{product}',[ProductsController::class, 'destroy'])->name('.destroy')->where('id','\d+');
 });
 
-//Route::get('/products', [ProductsController::class, 'index'])->name('products.index');
-//Route::post('/products/store', [ProductsController::class, 'store'])->name('products.store');
-//Route::get('/products/{product}', [ProductsController::class, 'show'])->name('products.show');
-//Route::get('products/{product}/edit', [ProductsController::class, 'edit'])->name('products.edit')->where('id','\d+');
-//Route::delete('/products/{product}', [ProductsController::class, 'destroy'])->name('products.destroy')->where('id','\d+');
-//Route::get('/products/{product}/edit', [ProductsController::class, 'edit'])->name('products.edit')->where('id','\d+');
-//Route::post('/products/{product}', [ProductsController::class, 'update'])->name('products.update')->where('id','\d+');
+Route::resource('/categories', CategoryController::class);
