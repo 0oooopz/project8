@@ -1,3 +1,7 @@
+<?php
+/* @var \App\Models\Product[] $products*/
+?>
+
 @extends('layouts.index')
 
 @section('content')
@@ -12,7 +16,7 @@
       <div class="col-6 my-2">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-tittle">{{ $product->name }}</h5>
+            <h5 class="card-tittle">{{ $product->name}}</h5>
             <p class="card-text">
               {{ $product->description }}
             </p>

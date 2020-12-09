@@ -1,3 +1,7 @@
+<?php
+/* @var \App\Models\Category $category*/
+?>
+
 @extends('layouts.index')
 
 @section('content')

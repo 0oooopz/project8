@@ -1,3 +1,7 @@
+<?php
+/* @var \App\Models\Product $product*/
+?>
+
 @extends('layouts.index')
 
 @section('content')

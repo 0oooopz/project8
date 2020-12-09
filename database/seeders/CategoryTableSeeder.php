@@ -2,10 +2,12 @@
 
 namespace Database\Seeders;
 
+
+use App\Models\Category;
 use Illuminate\Database\Seeder;
 
 use Illuminate\Support\Facades\DB;
-use Faker\Generator as Faker;
+
 
 class CategoryTableSeeder extends Seeder
 {
@@ -14,16 +16,8 @@ class CategoryTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run(Faker $faker)
+    public function run()
     {
-    	for($i = 0; $i < 5; $i++) {
-		    DB::table('categories')->insert([
-			    'name' => $faker->word(),
-			    'slug' => $faker->word(),
-			    'description' => $faker->sentence('10'),
-			    'created_at' => now(),
-			    'updated_at' => now(),
-		    ]);
-	    }
+    	Category::factory()->count(5)->create();
     }
 }
