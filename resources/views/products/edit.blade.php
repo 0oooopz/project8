@@ -9,7 +9,7 @@
       <a href="{{ route('products.index') }}" class="btn btn-secondary">Back</a>
     </div>
 
-    <form class="col-12 my-2" method="post" action="{{ route('products.update', ['product'=>$products]) }}">
+    <form class="col-12 my-2" method="post" action="{{ route('products.update', ['product'=>$product]) }}">
 
       @csrf
 
@@ -17,12 +17,12 @@
 
       <div class="form-group">
         <label for="name">Name</label>
-        <input type="text" class="form-control" id="name" name="name" value="{{ $products->name }}">
+        <input type="text" class="form-control" id="name" name="name" value="{{ $product->name }}">
       </div>
 
       <div class="form-group">
         <label for="sku">Sku</label>
-        <input type="number" class="form-control" id="sku" name="sku"  value="{{ $products->sku }}">
+        <input type="number" class="form-control" id="sku" name="sku"  value="{{ $product->sku }}">
       </div>
 
 {{--      <div class="form-group">--}}
@@ -32,42 +32,42 @@
 
       <div class="form-group">
         <label for="description">Description</label>
-        <textarea class="form-control" id="description" name="description" >{{ $products->description }}</textarea>
+        <textarea class="form-control" id="description" name="description" >{{ $product->description }}</textarea>
       </div>
 
       <div class="form-group">
         <label for="price_user">Price user</label>
-        <input type="number" class="form-control" id="price_user" name="price_user" value="{{ $products->price_user }}">
+        <input type="number" class="form-control" id="price_user" name="price_user" value="{{ $product->price_user }}">
       </div>
 
       <div class="form-group">
         <label for="price_3_opt">Price 3 opt</label>
-        <input type="number" class="form-control" id="price_3_opt" name="price_3_opt" value="{{ $products->price_3_opt }}">
+        <input type="number" class="form-control" id="price_3_opt" name="price_3_opt" value="{{ $product->price_3_opt }}">
       </div>
 
       <div class="form-group">
         <label for="price_8_opt">Price 8 opt</label>
-        <input type="number" class="form-control" id="price_8_opt" name="price_8_opt" value="{{ $products->price_8_opt }}">
+        <input type="number" class="form-control" id="price_8_opt" name="price_8_opt" value="{{ $product->price_8_opt }}">
       </div>
 
       <div class="form-group">
         <label for="price_dealer">Price dealer</label>
-        <input type="number" class="form-control" id="price_dealer" name="price_dealer" value="{{ $products->price_dealer }}">
+        <input type="number" class="form-control" id="price_dealer" name="price_dealer" value="{{ $product->price_dealer }}">
       </div>
 
       <div class="form-group">
         <label for="price_vip">Price VIP</label>
-        <input type="number" class="form-control" id="price_vip" name="price_vip" value="{{ $products->price_vip }}">
+        <input type="number" class="form-control" id="price_vip" name="price_vip" value="{{ $product->price_vip }}">
       </div>
 
       <div class="form-group">
         <label for="category_id">Category ID</label>
-        <input type="number" class="form-control" id="category_id" name="category_id" value="{{ $products->category_id }}">
+        <input type="number" class="form-control" id="category_id" name="category_id" value="{{ $product->category_id }}">
       </div>
 
       <div class="form-group">
         <label for="stock">stock</label>
-        <input type="number" class="form-control" id="stock" name="stock" value="{{ $products->stock }}">
+        <input type="number" class="form-control" id="stock" name="stock" value="{{ $product->stock }}">
       </div>
 
       <button type="submit" class="btn btn-primary">Submit</button>
