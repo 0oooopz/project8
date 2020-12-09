@@ -19,12 +19,12 @@ class ProductsController extends Controller {
     }
 
 	/**
-	 * @param int $id
+	 * @param Product $product
 	 * @return \Illuminate\Contracts\View\View
 	 */
-    public function show(int $id): \Illuminate\Contracts\View\View
+    public function show(Product $product): \Illuminate\Contracts\View\View
     {
-    	return view('products.show',['products'=>Product::findOrFail($id)]);
+    	return view('products.show',['product' => $product]);
     }
 
 	/**
@@ -36,12 +36,12 @@ class ProductsController extends Controller {
     }
 
 	/**
-	 * @param $id
+	 * @param Product $product
 	 * @return \Illuminate\Contracts\View\View
 	 */
-    public function edit($id): \Illuminate\Contracts\View\View
+    public function edit(Product $product): \Illuminate\Contracts\View\View
     {
-    	return view('products.edit', ['products'=>Product::findOrFail($id)]);
+    	return view('products.edit', ['product' => $product]);
     }
 
 	/**
@@ -58,25 +58,25 @@ class ProductsController extends Controller {
     }
 
 	/**
-	 * @param $id
+	 * @param Product $product
 	 * @param Request $request
 	 * @return RedirectResponse
 	 */
-    public function update($id, Request $request): RedirectResponse
+    public function update(Product $product, Request $request): RedirectResponse
     {
-    	$product = Product::findOrFail($id);
 
 	    $product->update(array_merge($request->all(),['slug' => Str::slug($request->name)]));
 	    return redirect()->route('products.index');
     }
 
 	/**
-	 * @param $id
+	 * @param Product $product
 	 * @return RedirectResponse
+	 * @throws \Exception
 	 */
-    public function destroy($id): RedirectResponse
+    public function destroy(Product $product): RedirectResponse
     {
-			Product::findOrFail($id)->delete();
+			$product->delete();
 			return redirect()->route('products.index');
     }
 }
