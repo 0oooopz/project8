@@ -22,7 +22,10 @@ class PictureFactory extends Factory
     public function definition()
     {
         return [
-            //
+        	'product_id' => 1,
+        	'path' => $this->faker->imageUrl(),
+	        'created_at' => now(),
+	        'updated_at' => now(),
         ];
     }
 }
