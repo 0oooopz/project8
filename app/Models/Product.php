@@ -94,6 +94,13 @@ class Product extends Model
     	$this->attributes['slug'] = Str::slug($value);
     }
 
+    public function picture(){
+    	return $this->hasOne(Picture::class);
+    }
+
+    protected $width = [
+    	'picture',
+    ];
 //    public function getPrice3OptAttribute($value){
 //    	return $value * 100;
 //    }
