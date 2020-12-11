@@ -25,7 +25,7 @@ class ProductFactory extends Factory
         return [
 	        'sku' => $this->faker->numberBetween(10000, 20000),
 	        'name' => $this->faker->name(),
-	        'slug' => $this->faker->word(),
+	        //'slug' => $this->faker->word(),
 	        'description' => $this->faker->sentence(6),
 	        'price_user' => $this->faker->randomFloat(2, 180, 200),
 	        'price_3_opt' => $this->faker->randomFloat(2, 160, 179),

@@ -27,10 +27,21 @@ class CreateProductsTable extends Migration
             $table->float('price_dealer');
             $table->float('price_vip');
 
-            $table->integer('category_id');
-            $table->integer('stock');
+            $table->unsignedInteger('category_id');
+            $table->unsignedInteger('stock');
+            $table->boolean('sale')->default(false);
+            $table->boolean('feature')->default(false);
+
+            $table->unsignedInteger('views')->default(0);
+            $table->unsignedInteger('sales count')->default(0);
 
             $table->timestamps();
+
+            $table->index('id');
+            $table->index('slug');
+            $table->index('sku');
+            $table->index('name');
+            $table->index('category_id');
         });
     }
 

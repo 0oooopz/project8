@@ -24,9 +24,9 @@ class ProductsController extends Controller {
 	 * @param Product $product
 	 * @return View
 	 */
-	public function show(Product $product): View
+	public function show(Product $product)//: View
 	{
-		//return array_merge($product->toArray(), ['FullAmountPrice' => $product->fullAmountPrice]);
+		dd($product->toArray());
 		return view('products.show', ['product' => $product]);
 	}
 
@@ -46,7 +46,7 @@ class ProductsController extends Controller {
 
 		$product = new Product();
 
-		$product->create(array_merge($request->all(), ['slug' => Str::slug($request->name)]));
+		$product->create($request->all());
 		return redirect()->route('products.index');
 	}
 

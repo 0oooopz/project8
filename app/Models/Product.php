@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 /**
  * Class Product
@@ -13,7 +14,7 @@ use Illuminate\Support\Facades\Hash;
  *
  * @property integer $sku
  * @property string $name
- * @property integer $slug
+ //* @property integer $slug
  * @property string $description
  * @property integer $price_user
  * @property integer $price_3_opt
@@ -22,6 +23,8 @@ use Illuminate\Support\Facades\Hash;
  * @property integer $price_vip
  * @property integer $category_id
  * @property integer $stock
+ * @property boolean $sale
+ *
  */
 class Product extends Model
 {
@@ -33,7 +36,7 @@ class Product extends Model
     protected $fillable = [
 			'sku',
       'name',
-			'slug',
+//			'slug',
       'description',
 			'price_user',
 			'price_3_opt',
@@ -42,6 +45,7 @@ class Product extends Model
 			'price_vip',
 			'category_id',
 			'stock',
+	    'sale',
     ];
 
 	/**
@@ -50,7 +54,7 @@ class Product extends Model
 	protected $casts = [
 		'sku' => 'integer',
 		'name' => 'string',
-		'slug' => 'string',
+//		'slug' => 'string',
 		'description' => 'string',
 		'price_user' => 'integer',
 		'price_3_opt' => 'integer',
@@ -59,6 +63,7 @@ class Product extends Model
 		'price_vip' => 'integer',
 		'category_id' => 'integer',
 		'stock' => 'integer',
+		'sale' => 'boolean',
 	];
 
 	/**
@@ -84,9 +89,10 @@ class Product extends Model
     	return $this->stock * $this->price_vip;
     }
 
-//    public function setNameAttribute($value){
-//    	$this->attributes['name'] = Hash::make($value);
-//    }
+    public function setNameAttribute($value){
+    	$this->attributes['name'] = $value;
+    	$this->attributes['slug'] = Str::slug($value);
+    }
 
 //    public function getPrice3OptAttribute($value){
 //    	return $value * 100;
