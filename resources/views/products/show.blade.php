@@ -12,9 +12,10 @@
       <a href="{{ route('products.index') }}" class="btn btn-secondary">Back</a>
     </div>
 
-    <div>
-      <img src="{{ $product->picture['path'] }}" height="300" width="300" alt="">
-    </div>
+{{--    <div>--}}
+{{--      <img src="{{ $product->picture['path'] }}" height="300" width="300" alt="">--}}
+{{--    </div>--}}
+
     <dl class="col-12 my-2">
       <dt class="col-sm-3">Name</dt>
       <dd class="col-sm-9">{{ $product->name }}</dd>
@@ -23,6 +24,10 @@
     <dl class="col-12 my-2">
       <dt class="col-sm-3">Sku</dt>
       <dd class="col-sm-9">{{ $product->sku }}</dd>
+    </dl>
+    <dl class="col-12 my-2">
+      <dt class="col-sm-3">Category</dt>
+      <dd class="col-sm-9"><a href="{{ route('categories.show', ['category' => $product->category_id]) }}">{{ $product->category->name }}</a></dd>
     </dl>
 
     <dl class="col-12 my-2">

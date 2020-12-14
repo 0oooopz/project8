@@ -14,7 +14,7 @@ class PicturesTableSeeder extends Seeder
      */
     public function run()
     {
-			Picture::factory()->create([
+			Picture::factory()->count(50)->create([
 				'path' => '/storage/images/no-image.png'
 			]);
     }

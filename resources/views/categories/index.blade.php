@@ -1,3 +1,7 @@
+<?php
+/* @var \App\Models\Category[] $categories*/
+?>
+
 @extends('layouts.index')
 
 @section('content')
@@ -16,9 +20,9 @@
             <p class="card-text">
               {{ $category->description }}
             <div class="d-flex justify-content-end">
-              <a href="{{ route('categories.show',['category' => $category->slug]) }}" class="btn btn-primary mr-2">Show more...</a>
-              <a href="{{ route('categories.edit', ['category'=>$category->slug]) }}" class="btn btn-warning mr-2">Edit</a>
-              <form action="{{ route('categories.destroy',['category'=>$category->slug]) }}" method="post">
+              <a href="{{ route('categories.show',['category' => $category->id]) }}" class="btn btn-primary mr-2">Show more...</a>
+              <a href="{{ route('categories.edit', ['category'=>$category->id]) }}" class="btn btn-warning mr-2">Edit</a>
+              <form action="{{ route('categories.destroy',['category'=>$category->id]) }}" method="post">
                 <input type="hidden" name="_method" value="delete">
                 @csrf
                 <button class="btn btn-danger">Delete</button>

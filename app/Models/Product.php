@@ -25,10 +25,16 @@ use Illuminate\Support\Str;
  * @property integer $stock
  * @property boolean $sale
  *
+ * @property Category $category
  */
 class Product extends Model
 {
     use HasFactory;
+
+	/**
+	 * @var string
+	 */
+	protected $table = 'products';
 
 	/**
 	 * @var string[]
@@ -67,6 +73,14 @@ class Product extends Model
 	];
 
 	/**
+	 * @var string[]
+	 */
+	protected $width = [
+		'picture',
+		'category',
+	];
+
+	/**
 	 * @param $value
 	 * @return string
 	 */
@@ -89,18 +103,26 @@ class Product extends Model
     	return $this->stock * $this->price_vip;
     }
 
-    public function setNameAttribute($value){
-    	$this->attributes['name'] = $value;
-    	$this->attributes['slug'] = Str::slug($value);
-    }
+//    public function setNameAttribute($value){
+//    	$this->attributes['name'] = $value;
+//    	$this->attributes['slug'] = Str::slug($value);
+//    }
 
+	/**
+	 * @return \Illuminate\Database\Eloquent\Relations\HasOne
+	 */
     public function picture(){
     	return $this->hasOne(Picture::class);
     }
 
-    protected $width = [
-    	'picture',
-    ];
+	/**
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+	 */
+		public function category(){
+    	return $this->belongsTo(Category::class,'category_id','id');
+		}
+
+
 //    public function getPrice3OptAttribute($value){
 //    	return $value * 100;
 //    }

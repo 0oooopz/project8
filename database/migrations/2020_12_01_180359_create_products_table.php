@@ -14,34 +14,40 @@ class CreateProductsTable extends Migration
     public function up()
     {
         Schema::create('products', function (Blueprint $table) {
-            $table->BigIncrements('id');
+	        $table->BigIncrements('id');
 
-            $table->integer('sku');
-            $table->string('name');
-            $table->string('slug');
-            $table->text('description')->nullable();
+	        $table->foreign('category_id')->references('id')->on('categories');
+	        $table->unsignedBigInteger('category_id');
 
-            $table->float('price_user');
-            $table->float('price_3_opt');
-            $table->float('price_8_opt');
-            $table->float('price_dealer');
-            $table->float('price_vip');
+	        $table->integer('sku');
+	        $table->string('name');
+	        $table->string('slug');
+	        $table->text('description')->nullable();
 
-            $table->unsignedInteger('category_id');
-            $table->unsignedInteger('stock');
-            $table->boolean('sale')->default(false);
-            $table->boolean('feature')->default(false);
+	        $table->float('price_user');
+	        $table->float('price_3_opt');
+	        $table->float('price_8_opt');
+	        $table->float('price_dealer');
+	        $table->float('price_vip');
 
-            $table->unsignedInteger('views')->default(0);
-            $table->unsignedInteger('sales count')->default(0);
+	        $table->unsignedInteger('stock');
+	        $table->boolean('sale')->default(false);
+	        $table->boolean('feature')->default(false);
 
-            $table->timestamps();
+	        $table->unsignedInteger('views')->default(0);
+	        $table->unsignedInteger('sales count')->default(0);
 
-            $table->index('id');
-            $table->index('slug');
-            $table->index('sku');
-            $table->index('name');
-            $table->index('category_id');
+	        $table->timestamps();
+
+	        $table->index('id');
+	        $table->index('slug');
+	        $table->index('sku');
+	        $table->index('name');
+	        $table->index('category_id');
+//        });
+//        Schema::table('products', function(Blueprint $table){
+
+            //$table->foreign('id')->references('category_id')->on('products');
         });
     }
 

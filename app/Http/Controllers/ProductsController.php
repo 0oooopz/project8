@@ -26,7 +26,7 @@ class ProductsController extends Controller {
 	 */
 	public function show(Product $product)//: View
 	{
-		//dd($product->toArray());
+		//dd($product);
 		return view('products.show', ['product' => $product]);
 	}
 

@@ -1,5 +1,5 @@
 <?php
-/* @var \App\Models\Category $category*/
+/* @var \App\Models\Category $category */
 ?>
 
 @extends('layouts.index')
@@ -21,6 +21,13 @@
       <dd class="col-sm-9">{{ $category->description }}</dd>
     </dl>
 
+  </div>
+
+  <div class="row">
+    <h1>Category products</h1>
+    @foreach($category->products as $product )
+      <div class="col-12"><a href="{{ route('products.show', ['product' => $product->id]) }}">{{ $product->name }}</a></div>
+    @endforeach
 
 
   </div>
