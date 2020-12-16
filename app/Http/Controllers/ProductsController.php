@@ -12,12 +12,17 @@ use Illuminate\View\View;
 
 class ProductsController extends Controller {
 	/**
+	 * @param Request $request
+	 * @param Product $product
 	 * @return View
 	 */
-	public function index(): View {
-		$products = Product::all();
-
-		return view('products.index', ['products' => $products]);
+	public function index(Request $request, Product $product): View {
+		return view('products.index', [
+			'products' => $product->getAll($request),
+			'params' => [
+				'search' => $request->search,
+			],
+		]);
 	}
 
 	/**
@@ -26,7 +31,6 @@ class ProductsController extends Controller {
 	 */
 	public function show(Product $product)//: View
 	{
-		//dd($product);
 		return view('products.show', ['product' => $product]);
 	}
 

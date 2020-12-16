@@ -2,10 +2,15 @@
 
 namespace App\Models;
 
+use App\Models\Traits\Pagination;
+use App\Models\Traits\Search;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+
 
 /**
  * Class Product
@@ -14,7 +19,7 @@ use Illuminate\Support\Str;
  *
  * @property integer $sku
  * @property string $name
- //* @property integer $slug
+ * //* @property integer $slug
  * @property string $description
  * @property integer $price_user
  * @property integer $price_3_opt
@@ -27,9 +32,8 @@ use Illuminate\Support\Str;
  *
  * @property Category $category
  */
-class Product extends Model
-{
-    use HasFactory;
+class Product extends Model {
+	use HasFactory, Pagination, Search;
 
 	/**
 	 * @var string
@@ -39,20 +43,20 @@ class Product extends Model
 	/**
 	 * @var string[]
 	 */
-    protected $fillable = [
-			'sku',
-      'name',
+	protected $fillable = [
+		'sku',
+		'name',
 //			'slug',
-      'description',
-			'price_user',
-			'price_3_opt',
-			'price_8_opt',
-			'price_dealer',
-			'price_vip',
-			'category_id',
-			'stock',
-	    'sale',
-    ];
+		'description',
+		'price_user',
+		'price_3_opt',
+		'price_8_opt',
+		'price_dealer',
+		'price_vip',
+		'category_id',
+		'stock',
+		'sale',
+	];
 
 	/**
 	 * @var array
@@ -72,6 +76,10 @@ class Product extends Model
 		'sale' => 'boolean',
 	];
 
+//	protected $perPage = 20;
+	private $searchFields = [
+		'name',
+	];
 	/**
 	 * @var string[]
 	 */
@@ -84,49 +92,72 @@ class Product extends Model
 	 * @param $value
 	 * @return string
 	 */
-    public function getNameAttribute($value){
-    	return strtoupper($value);
-    }
+//	public function getNameAttribute($value) {
+//		return strtoupper($value);
+//	}
 
 	/**
 	 * @param $value
 	 * @return float|int
 	 */
-    public function getPriceUserAttribute($value){
-    	return $value * 10;
-    }
+	public function getPriceUserAttribute($value) {
+		return $value * 10;
+	}
 
 	/**
 	 * @return float|int
 	 */
-    public function getFullAmountPriceAttribute(){
-    	return $this->stock * $this->price_vip;
-    }
+	public function getFullAmountPriceAttribute() {
+		return $this->stock * $this->price_vip;
+	}
 
-//    public function setNameAttribute($value){
-//    	$this->attributes['name'] = $value;
-//    	$this->attributes['slug'] = Str::slug($value);
-//    }
+	public function setNameAttribute($value) {
+		$this->attributes['name'] = $value;
+		$this->attributes['slug'] = Str::slug($value);
+	}
 
 	/**
 	 * @return \Illuminate\Database\Eloquent\Relations\HasOne
 	 */
-    public function picture(){
-    	return $this->hasOne(Picture::class);
-    }
+	public function picture() {
+		return $this->hasOne(Picture::class);
+	}
 
 	/**
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
 	 */
-		public function category(){
-    	return $this->belongsTo(Category::class,'category_id','id');
-		}
+	public function category() {
+		return $this->belongsTo(Category::class, 'category_id', 'id');
+	}
 
+	/**
+	 * @param Request $request
+	 * @return LengthAwarePaginator
+	 */
+	public function getAll(Request $request): LengthAwarePaginator {
 
-//    public function getPrice3OptAttribute($value){
-//    	return $value * 100;
-//    }
+//		$query = $this->query();
+//		if(isset($request->search)){
+//				$asd = $query->where('name','like',"%$request->search%");
+//			dump($query->get());
+//		}
+//		return $this->paginate($asd);
+		return $this->addPagination($this->addSearch($this->with('category'),
+			$request->query()),
+			$request->query());
+	}
 
-//	protected $guarded = [];
 
 }
+
+//
+///**
+// * @param Request $request
+// * @return LengthAwarePaginator
+// */
+//public function getAll(Request $request): LengthAwarePaginator {
+//
+//	return $this->addPagination($this->addSearch($this->with('user'),
+//		$request->query()),
+//		$request->query());
+//}
