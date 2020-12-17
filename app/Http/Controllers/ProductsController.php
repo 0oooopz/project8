@@ -16,11 +16,12 @@ class ProductsController extends Controller {
 	 * @param Product $product
 	 * @return View
 	 */
-	public function index(Request $request, Product $product): View {
+	public function index(Request $request, Product $product): \Illuminate\Contracts\View\View {
 		return view('products.index', [
 			'products' => $product->getAll($request),
 			'params' => [
 				'search' => $request->search,
+				'filter' => $request->filter,
 			],
 		]);
 	}
@@ -29,7 +30,7 @@ class ProductsController extends Controller {
 	 * @param Product $product
 	 * @return View
 	 */
-	public function show(Product $product)//: View
+	public function show(Product $product): \Illuminate\Contracts\View\View
 	{
 		return view('products.show', ['product' => $product]);
 	}
@@ -37,7 +38,7 @@ class ProductsController extends Controller {
 	/**
 	 * @return View
 	 */
-	public function create(): View {
+	public function create(): \Illuminate\Contracts\View\View {
 		return view('products.create');
 	}
 
@@ -58,7 +59,7 @@ class ProductsController extends Controller {
 	 * @param Product $product
 	 * @return View
 	 */
-	public function edit(Product $product): View {
+	public function edit(Product $product): \Illuminate\Contracts\View\View {
 		return view('products.edit', ['product' => $product]);
 	}
 

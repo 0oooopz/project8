@@ -76,9 +76,9 @@ class Product extends Model {
 		'sale' => 'boolean',
 	];
 
-//	protected $perPage = 20;
 	private $searchFields = [
 		'name',
+		'active',
 	];
 	/**
 	 * @var string[]
@@ -132,32 +132,12 @@ class Product extends Model {
 
 	/**
 	 * @param Request $request
-	 * @return LengthAwarePaginator
+	 * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
 	 */
-	public function getAll(Request $request): LengthAwarePaginator {
+	public function getAll(Request $request) {
 
-//		$query = $this->query();
-//		if(isset($request->search)){
-//				$asd = $query->where('name','like',"%$request->search%");
-//			dump($query->get());
-//		}
-//		return $this->paginate($asd);
 		return $this->addPagination($this->addSearch($this->with('category'),
 			$request->query()),
 			$request->query());
 	}
-
-
 }
-
-//
-///**
-// * @param Request $request
-// * @return LengthAwarePaginator
-// */
-//public function getAll(Request $request): LengthAwarePaginator {
-//
-//	return $this->addPagination($this->addSearch($this->with('user'),
-//		$request->query()),
-//		$request->query());
-//}

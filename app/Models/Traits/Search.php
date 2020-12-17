@@ -18,7 +18,6 @@ trait Search {
           $query->orWhere($field, 'like', "%{$search}%");
         }
       });
-
     }
     return $query;
   }

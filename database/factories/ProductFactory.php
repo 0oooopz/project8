@@ -34,6 +34,7 @@ class ProductFactory extends Factory
 	        'price_vip' => $this->faker->randomFloat(2, 100, 119),
 	        'category_id' => $this->faker->numberBetween(1, 5),
 	        'stock' => $this->faker->numberBetween(1, 100),
+	        'active' => $this->faker->boolean(50),
 	        'created_at'=> now(),
 	        'updated_at'=> now(),
         ];

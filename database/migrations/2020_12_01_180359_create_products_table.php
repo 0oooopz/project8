@@ -32,7 +32,7 @@ class CreateProductsTable extends Migration
 
 	        $table->unsignedInteger('stock');
 	        $table->boolean('sale')->default(false);
-	        $table->boolean('feature')->default(false);
+	        $table->boolean('active')->default(false);
 
 	        $table->unsignedInteger('views')->default(0);
 	        $table->unsignedInteger('sales count')->default(0);
@@ -44,10 +44,7 @@ class CreateProductsTable extends Migration
 	        $table->index('sku');
 	        $table->index('name');
 	        $table->index('category_id');
-//        });
-//        Schema::table('products', function(Blueprint $table){
 
-            //$table->foreign('id')->references('category_id')->on('products');
         });
     }
 
