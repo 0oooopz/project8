@@ -2,8 +2,9 @@
 
 namespace Database\Factories;
 
-use App\Models\tag;
+use App\Models\Tag;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 class TagFactory extends Factory
 {
@@ -12,7 +13,7 @@ class TagFactory extends Factory
      *
      * @var string
      */
-    protected $model = tag::class;
+    protected $model = Tag::class;
 
     /**
      * Define the model's default state.
@@ -21,8 +22,11 @@ class TagFactory extends Factory
      */
     public function definition()
     {
+    	$name = join( ' ',$this->faker->words($this->faker->numberBetween(1,3)));
         return [
-            //
+        	'name' => $name,
+	        'slug' => Str::slug($name),
+
         ];
     }
 }
