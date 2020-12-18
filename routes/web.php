@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\TagController;
 
 
 /*
@@ -25,4 +26,4 @@ Route::resource('/products', ProductsController::class);
 Route::resource('/categories', CategoryController::class);
 
 Route::resource('posts', PostController::class);
-
+Route::resource('tags', TagController::class);

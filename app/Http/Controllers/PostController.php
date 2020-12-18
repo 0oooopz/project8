@@ -7,14 +7,16 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+	/**
+	 * @param Request $request
+	 * @param Post $post
+	 * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+	 */
+    public function index(Request $request, Post $post)
     {
-        //
+			return view('posts.index',[
+				'posts' => $post->with('tags')->get(),
+			]);
     }
 
     /**
